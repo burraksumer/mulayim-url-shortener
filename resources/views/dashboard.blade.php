@@ -1,0 +1,31 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="text-lg font-semibold text-center">My Shortened URLs</h3>
+
+                    @if (session('status'))
+                        <x-success-alert
+                            successHeading="Success"
+                            successMessage="{{ session('status') }}"
+                            displayCopyButton="{{ false }}"
+                        />
+                    @endif
+
+                    @if (isset($urls))
+                        <x-url-table :urls="$urls" />
+                    @else
+                        <p>URLs variable is not set.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
